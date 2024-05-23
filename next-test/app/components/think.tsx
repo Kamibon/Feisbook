@@ -1,14 +1,15 @@
+'use client'
 import React, { useState } from 'react'
-import { url } from '../constants/sections'
+
 
 export default function Think() {
 
   const[content, setContent] = useState("")
 
-  function createPost(){
+  /* function createPost(){
     fetch(url+"posts.json", {method:"POST", body:JSON.stringify({content:content, user:localStorage.getItem("user"), date:new Date().toLocaleDateString(), likes:[""] })})
   }
-
+ */
   return (
     <div className='h-[35%] w-[35%] absolute left-[35%] m-4'>
         <div className='bg-slate-500 h-[17%] flex justify-start items-start'>
@@ -20,7 +21,7 @@ export default function Think() {
            placeholder = ' A cosa stai pensando?'/>
         
         <div className='bg-slate-500 h-[17%] flex justify-end items-center'>
-             <button onClick={createPost} className='bg-blue-700  m-2 p-1 rounded-md text-white hover:bg-blue-800'>Posta</button>
+             <button /* onClick={createPost} */ className='bg-blue-700  m-2 p-1 rounded-md text-white hover:bg-blue-800'>Posta</button>
 
         </div>
 
