@@ -1,37 +1,37 @@
 'use client'
-import React, {  useState } from 'react'
-
+import React, {  MouseEventHandler, useState } from 'react'
+import {url, User} from '../constants/constants'
 
 type myProps = {
-  openChat:boolean
+  openChat:MouseEventHandler<HTMLDivElement>
 }
 
 
-export default function Trending({openChat}: myProps) {
+export default function Trending(/* {openChat}: myProps */) {
 
-  // const [people, setPeople] = useState<User[]>([])
+   const [people, setPeople] = useState<User[]>([])
   const [done, setDone] = useState(false);
 
 
- /*  function onlineUsers(){
+  function onlineUsers(){
     if(!done){
       setDone(true)
-    fetch(url + "users.json").then(response=>response.json()).then((peoples)=>{
+    fetch(url + "users").then(response=>response.json()).then((peoples)=>{
     
     let list:User[] = [];
     
-    for(let el of Object.keys(peoples))
+    for(let el of peoples)
       {
-      list.push(peoples[el]);
+      list.push(el);
       
      
   
       }
      setPeople(list);
-   
+     console.log(list)
   } )
   }
-  } */
+  } 
 
     return (
       <aside className='absolute right-1 top-24   h-[100%] w-[15%] '>
@@ -41,14 +41,14 @@ export default function Trending({openChat}: myProps) {
  
 
           </div>
-          {/* <div onMouseEnter={onlineUsers} className=' border-t-2 mt-5 h-[40%]  w-[100%]'> }
+           <div onMouseEnter={onlineUsers} className=' border-t-2 mt-5 h-[7%]  w-[100%]'> 
             <span> Online</span>
-            </div> */
-        /*{   {people.map(elem=>
-          <div key={Math.random()*2567} className='flex m-2 cursor-pointer justify-start hover:bg-blue-600'>
-            <div className='align-text-bottom' onClick={openChat} key = {elem.name}>{elem.name + "\t"}{elem.surname} </div>
-            <VscCircleFilled key={elem.surname +"d"} className='align-text-bottom fill-green-600' />
-            </div>)}  */}
+            </div> 
+           {people.map(elem=>
+          // <div key={Math.random()*2567} className='flex m-2 cursor-pointer justify-start hover:bg-blue-600'>
+            <div className='align-text-bottom m-2 cursor-pointer justify-start hover:bg-blue-600' /* onClick={openChat} */ key = {elem.id.toString()}>{elem.name + "\t"}{elem.username} </div>
+            // </div>
+           )}  
 
          
       

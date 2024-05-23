@@ -19,7 +19,7 @@ export default function Home() {
     {/* <Link href={"/test"}> Moderfaca</Link> */}
     
     <Searchbar name = "Io"  searched ={[]}/>
-    <Trending openChat = {false}></Trending>
+    <Trending ></Trending>
     <SideBar/>
     <Think/>
     </>
