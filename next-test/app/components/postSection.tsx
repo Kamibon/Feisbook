@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import {url, Post, User} from '../constants/constants'
 import { useSelector, useDispatch } from 'react-redux'
 import Think from './think'
-import { getData, showPosts } from '../redux/stateSlice'
+import { getPosts, getUsers, showPosts } from '../redux/stateSlice'
 import { AppDispatch } from '../redux/store'
 
 type Social = {
@@ -15,7 +15,13 @@ type Social = {
 
 export default function PostSection() {
 
-   useEffect(()=>{ dispatch(getData())}, [])
+   useEffect(()=>{ 
+    dispatch(getPosts());
+  
+    dispatch(getUsers())
+   } 
+   , [])
+   //useEffect(()=>{ dispatch(getData('users') )}, [])
 
 /* async function showPosts(){
   const res = await  fetch(url + 'posts');
@@ -25,7 +31,9 @@ export default function PostSection() {
  } */
 
  //const [posts, setPosts] = useState<Post[]>([])
- const posts = useSelector((state:Social) => state.social.posts)
+ const posts = useSelector((state:Social)=>state.social.posts)
+ const users = useSelector((state:Social)=>state.social.users)
+ 
  const dispatch = useDispatch<AppDispatch>()
 
   return (
@@ -33,8 +41,8 @@ export default function PostSection() {
     <Think />
     <div className='w-[30%] mx-auto '>
        {posts.map(p=>
-            <div key={p.id.toString()} onMouseEnter={()=>dispatch(showPosts())} className='border border-gray-500 shadow-slate-600 m-auto mt-5 w-[95%] h-[30%] overflow-clip'>
-            <div>{p.userId.toString()}</div>
+            <div key={p.id.toString()}  className='border border-gray-500 shadow-slate-600 m-auto mt-5 w-[95%] h-[30%] overflow-clip'>
+            <strong>{ users.find((el)=>el.id ===p.userId)?.name }</strong>
             <div>{p.title}</div>
             <div>{p.body}</div>
             

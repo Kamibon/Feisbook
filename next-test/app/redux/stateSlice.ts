@@ -14,17 +14,24 @@ const initialState:initialState = {
   posts:[]
 }
 
-export const getData = createAsyncThunk("posts", async()=> {
+export const getPosts = createAsyncThunk("posts", async()=> {
+  
+  
   const res = await fetch(url+'posts');
   const data = await res.json()
   return data
 })
 
 export const getUsers = createAsyncThunk("users", async()=> {
+  
+  
   const res = await fetch(url+'users');
   const data = await res.json()
   return data
 })
+
+
+
 
 
 
@@ -46,15 +53,17 @@ export const socialSlice = createSlice({
     },
   },
   extraReducers: (builder)=>{
-    builder.addCase(getData.fulfilled, (state, action)=>{
- state.posts = action.payload;
+    builder.addCase(getPosts.fulfilled  , (state, action)=>{
+      
+       state.posts = action.payload
+
+    }).addCase(
+      getUsers.fulfilled  , (state, action)=>{
+      
+        state.users = action.payload
  
- builder.addCase(getUsers.fulfilled, (state,action)=>{
-  state.users = action.payload;
-
- })
-
-    })
+     }
+    )
   }
 })
 
