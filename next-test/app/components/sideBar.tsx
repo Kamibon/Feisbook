@@ -18,7 +18,7 @@ export default function SideBar() {
        {   names.map((el, id)=>
         
         
-        <div key = {id} className='hover:bg-slate-300 hover:cursor-pointer m-3 flex-shrink-0 w-full h-[5%]'>{el}</div>) }
+        <div key = {id} className='hover:bg-slate-300 hover:cursor-pointer p-auto m-3 text-center flex-shrink-0 w-full h-[5%]'>{el}</div>) }
  
 
     </aside>

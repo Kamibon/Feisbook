@@ -1,16 +1,27 @@
 'use client'
-import React, {  MouseEventHandler, useState } from 'react'
+import React, {  MouseEventHandler, useEffect, useState } from 'react'
 import {url, User} from '../constants/constants'
+
 
 type myProps = {
   openChat:MouseEventHandler<HTMLDivElement>
 }
 
 
-export default function Trending(/* {openChat}: myProps */) {
+
+
+export default  function Trending(/* {openChat}: myProps */) {
 
    const [people, setPeople] = useState<User[]>([])
   const [done, setDone] = useState(false);
+
+  useEffect(()=>{
+      onlineUsers()
+
+
+  }, [])
+  
+
 
 
   function onlineUsers(){
@@ -28,7 +39,7 @@ export default function Trending(/* {openChat}: myProps */) {
   
       }
      setPeople(list);
-     console.log(list)
+     
   } )
   }
   } 
@@ -46,7 +57,7 @@ export default function Trending(/* {openChat}: myProps */) {
             </div> 
            {people.map(elem=>
           // <div key={Math.random()*2567} className='flex m-2 cursor-pointer justify-start hover:bg-blue-600'>
-            <div className='align-text-bottom m-2 cursor-pointer justify-start hover:bg-blue-600' /* onClick={openChat} */ key = {elem.id.toString()}>{elem.name + "\t"}{elem.username} </div>
+            <div className='align-text-bottom m-2 cursor-pointer justify-start hover:bg-blue-600' /* onClick={openChat} */ key = {elem.id.toString()}>{elem.username} </div>
             // </div>
            )}  
 

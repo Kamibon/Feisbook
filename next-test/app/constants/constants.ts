@@ -1,4 +1,5 @@
 export const url = 'https://jsonplaceholder.typicode.com/'
+
 export type User = {
   id: Number,
   name : string,
@@ -22,4 +23,11 @@ company: {
     bs: string
 }
 
+}
+
+export type Post = {
+    userId:Number,
+    id:Number,
+    title:string,
+    body:string
 }
