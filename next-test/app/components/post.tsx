@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react'
 
 
+type myProps = {
+  id:Number,
+  uid:Number,
+  name:string|undefined,
+  title:string,
+  body:string
+}
 
-
-export default function Post(/* {id, name, date, text, likes} */) {
+export default function PostComp( {id, uid, name, title, body}: myProps ) {
 
   const [liked, setLiked] = useState(false);
 
@@ -22,15 +28,15 @@ export default function Post(/* {id, name, date, text, likes} */) {
  
 
   return (
-    <div className=' border-4 bg-white flex flex-col justify-start m-[7%] relative items-start h-40 w-96'>
-        {/* <h3 className='text-blue-700 '>{name}</h3>
-        <span className='text-gray-500'>{date}</span>
-        <div className='text-ellipsis'>{text}</div> */}
+    <div className=' border-4 bg-white flex flex-col justify-start m-[20%] relative items-start h-40 w-96'>
+         <h3 className='text-blue-700 cursor-pointer '>{name}</h3>
+         <strong className='text-ellipsis'>{title}</strong>
+        <div className='text-clip'>{body}</div> 
         <div className='mb-0 absolute bottom-[20%] flex justify-between'> 
         
         </div>
        
-        <div className='h-[20%] absolute border-y-2 w-[100%]   text-left bottom-0'><span>{/* {likes.length} */}</span></div>
+         <div className='h-[20%]  border-2 border-gray-500 w-[100%] flex align-middle   text-left '><button className='hover:bg-blue-600 mx-2'>Mi piace </button><button className='hover:bg-blue-600 mx-2'>Commenta</button></div> 
 
 
 

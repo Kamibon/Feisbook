@@ -2,22 +2,34 @@
 
 import Image from 'next/image'
 import React, {useEffect, useState} from 'react'
+import { useSelector } from 'react-redux'
+import { Social } from '../redux/stateSlice'
+import { User } from '../constants/constants'
 
 
 
 type myProps = {
   name:String,
   // onChange: Function,
-  searched:Array<any>
+  
 }
 
 
-export default function Searchbar({name,  searched }:myProps) {
+export default function Searchbar({name}:myProps) {
     const [value, setValue] = useState('')
+    const [searched, setSearched] = useState<User[]>([])
 
- 
+    const posts = useSelector((state:Social)=>state.social.posts)
+    const users = useSelector((state:Social)=>state.social.users)
 
-    
+    const search = (val:string)=>{
+      if(val.length>0)
+      setSearched(users.filter((el)=>el.username.startsWith(val)||el.name.startsWith(val)))
+    else setSearched([])
+    }
+
+
+
   return (
     <div className='w-[100%] '>
    
@@ -26,7 +38,7 @@ export default function Searchbar({name,  searched }:myProps) {
          
            
            <div className='m-10 text-white text-3xl font-bold '> Feisbook </div>
-            <input className='rounded-md  bg-white h-[35%] w-[40%] ' onChange={(e)=>setValue(e.target.value)} placeholder='Cerca'/>
+            <input className='rounded-md  bg-white h-[35%] w-[40%] ' onChange={(e)=>search(e.target.value)} placeholder='Cerca'/>
            
               
            
@@ -42,7 +54,8 @@ export default function Searchbar({name,  searched }:myProps) {
          
         {searched?.map((el)=>
         <div key={Math.random()} className='flex flex-col justify-center ml-[40%] mb-1 z-10 w-[70%]'>
-        <div key={el.name+Math.random()} className='w-[20%] h-[8%]   hover:bg-slate-500  '>{el.name} {el.surname} 
+        <div key={el.id.toString()} className='w-[20%] h-[8%]   hover:bg-slate-500  '>
+        {el.username + ":"+ el.name} 
         {/* <Image key={el.surname} className='w-[30%] h-[50%]' alt = "" src ={require('./pages/photo/profile.jpg')}/> */}
         </div>
         </div>

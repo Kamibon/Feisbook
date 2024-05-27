@@ -14,7 +14,7 @@ const names = [
 
 export default function SideBar() {
   return (
-    <aside className='absolute left-0 flex flex-col items-center top-20 border-r-2 border-gray-300 h-[80%] w-[15%] '>
+    <aside id='sidebar' className='absolute left-0 flex flex-col items-center top-20 border-r-2 border-gray-300 h-[80%] w-[15%] '>
        {   names.map((el, id)=>
         
         

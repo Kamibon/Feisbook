@@ -23,7 +23,7 @@ export default function Home() {
     
     {/* <Link href={"/test"}> Moderfaca</Link> */}
     
-    <Searchbar name = "Io"  searched ={[]}/>
+    <Searchbar name = "Io"  />
     <PostSection/>
     <Trending ></Trending>
     <SideBar/>

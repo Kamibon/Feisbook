@@ -3,15 +3,11 @@ import React, { useEffect, useState } from 'react'
 import {url, Post, User} from '../constants/constants'
 import { useSelector, useDispatch } from 'react-redux'
 import Think from './think'
-import { getPosts, getUsers, showPosts } from '../redux/stateSlice'
+import { getPosts, getUsers, showPosts, Social } from '../redux/stateSlice'
 import { AppDispatch } from '../redux/store'
+import PostComp  from './post'
 
-type Social = {
-    social:{
-    users: User[],
-    posts : Post[]
-    }
-  }
+
 
 export default function PostSection() {
 
@@ -37,21 +33,22 @@ export default function PostSection() {
  const dispatch = useDispatch<AppDispatch>()
 
   return (
-    <>
+    <div id="post" className='w-[90%]'>
     <Think />
     <div className='w-[30%] mx-auto '>
-       {posts.map(p=>
+       {posts.map(/* p=>
             <div key={p.id.toString()}  className='border border-gray-500 shadow-slate-600 m-auto mt-5 w-[95%] h-[30%] overflow-clip'>
             <strong>{ users.find((el)=>el.id ===p.userId)?.name }</strong>
             <div>{p.title}</div>
             <div>{p.body}</div>
             
-            </div>)} 
+            </div> */p=> <PostComp key={p.id.toString()} id ={p.id} uid = {p.userId} name={users.find((el)=>el.id ===p.userId)?.name} body={p.body} title={p.title} />
+            )} 
 
 
 
     </div>
-    </>
+    </div>
 
   )
 }

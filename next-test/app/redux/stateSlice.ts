@@ -14,6 +14,13 @@ const initialState:initialState = {
   posts:[]
 }
 
+export type Social = {
+  social:{
+  users: User[],
+  posts : Post[]
+  }
+}
+
 export const getPosts = createAsyncThunk("posts", async()=> {
   
   

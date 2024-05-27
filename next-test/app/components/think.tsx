@@ -11,13 +11,13 @@ export default function Think() {
   }
  */
   return (
-    <div className='h-[35%] w-[35%] absolute left-[35%] m-4'>
-        <div className='bg-slate-500 h-[17%] flex justify-start items-start'>
+    <div className='h-[80%] w-[35%]  m-auto mt-4'>
+        <div className='bg-slate-500 h-[20%] flex justify-start items-start'>
              <div className='hover:bg-gray-700 inline m-2'>Aggiorna stato</div>
              <div className='hover:bg-gray-700 inline m-2'>Aggiungi foto/video</div>
 
         </div>
-        <input value={content} onChange={(e)=>setContent(e.target.value)} className='h-[40%] w-[100%]'
+        <input value={content} onChange={(e)=>setContent(e.target.value)} className='h-[60%] w-[100%]'
            placeholder = ' A cosa stai pensando?'/>
         
         <div className='bg-slate-500 h-[17%] flex justify-end items-center'>
