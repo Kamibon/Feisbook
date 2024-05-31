@@ -40,7 +40,8 @@ export default function Searchbar({name}:myProps) {
            <div className='m-10 text-white text-3xl font-bold '> Feisbook </div>
             <input className='rounded-md  bg-white h-[35%] w-[40%] ' onChange={(e)=>search(e.target.value)} placeholder='Cerca'/>
            
-              
+           
+        
            
 
             <div className='h-[55%] w-[30%] flex flex-col justify-center justify-items-center'>
@@ -50,11 +51,12 @@ export default function Searchbar({name}:myProps) {
              {/* <Image className='h-full w-[40%] mb-3 inline' alt = "" src ={require('./pages/photo/profile.jpg')}/> */}
              </div>
              </div>
+             
         </nav>
          
         {searched?.map((el)=>
-        <div key={Math.random()} className='flex flex-col justify-center ml-[40%] mb-1 z-10 w-[70%]'>
-        <div key={el.id.toString()} className='w-[20%] h-[8%]   hover:bg-slate-500  '>
+        <div key={el.id.toString()} className='flex flex-col border  bg-white justify-center ml-[40%] mb-1 z-10 w-[70%]'>
+        <div key={el.id.toString()} className='w-[20%] h-[8%] border-gray-400  hover:bg-slate-500  '>
         {el.username + ":"+ el.name} 
         {/* <Image key={el.surname} className='w-[30%] h-[50%]' alt = "" src ={require('./pages/photo/profile.jpg')}/> */}
         </div>
@@ -63,7 +65,6 @@ export default function Searchbar({name}:myProps) {
        
         
         }
-        
           
     </div>
   )

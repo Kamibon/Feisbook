@@ -1,6 +1,7 @@
 'use client'
 import React, {  MouseEventHandler, useEffect, useState } from 'react'
 import {url, User} from '../constants/constants'
+import Link from 'next/link'
 
 
 type myProps = {
@@ -57,7 +58,7 @@ export default  function Trending(/* {openChat}: myProps */) {
             </div> 
            {people.map(elem=>
           // <div key={Math.random()*2567} className='flex m-2 cursor-pointer justify-start hover:bg-blue-600'>
-            <div className='align-text-bottom m-2 cursor-pointer justify-start hover:bg-blue-600' /* onClick={openChat} */ key = {elem.id.toString()}>{elem.username} </div>
+            <Link href={`users/${elem.id.toString()}`} className='align-text-bottom m-2 cursor-pointer justify-start hover:bg-blue-600' /* onClick={openChat} */ key = {elem.id.toString()}>{elem.username}<br/> </Link> 
             // </div>
            )}  
 
