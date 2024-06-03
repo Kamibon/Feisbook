@@ -17,7 +17,7 @@ export default function Think() {
              <div className='hover:bg-gray-700 inline m-2'>Aggiungi foto/video</div>
 
         </div>
-        <input value={content} onChange={(e)=>setContent(e.target.value)} className='h-[60%] w-[100%]'
+        <textarea value={content} onChange={(e)=>setContent(e.target.value)} className='h-[60%] w-[100%] py-3'
            placeholder = ' A cosa stai pensando?'/>
         
         <div className='bg-slate-500 h-[17%] flex justify-end items-center'>

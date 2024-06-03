@@ -31,3 +31,11 @@ export type Post = {
     title:string,
     body:string
 }
+
+export type Photo = {
+    albumId:Number,
+    id:Number,
+    title:string,
+    url:string,
+    thumbnailUrl:string
+}

@@ -5,6 +5,7 @@ import React, {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux'
 import { Social } from '../redux/stateSlice'
 import { User } from '../constants/constants'
+import Link from 'next/link'
 
 
 
@@ -56,10 +57,10 @@ export default function Searchbar({name}:myProps) {
          
         {searched?.map((el)=>
         <div key={el.id.toString()} className='flex flex-col border  bg-white justify-center ml-[40%] mb-1 z-10 w-[70%]'>
-        <div key={el.id.toString()} className='w-[20%] h-[8%] border-gray-400  hover:bg-slate-500  '>
+        <Link key={el.id.toString()} href={'users/'+el.id} className='w-[20%] h-[8%] border-gray-400  hover:bg-slate-500  '>
         {el.username + ":"+ el.name} 
         {/* <Image key={el.surname} className='w-[30%] h-[50%]' alt = "" src ={require('./pages/photo/profile.jpg')}/> */}
-        </div>
+        </Link>
         </div>
         )
        

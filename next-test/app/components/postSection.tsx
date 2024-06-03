@@ -35,7 +35,7 @@ export default function PostSection() {
   return (
     <div id="post" className='w-[90%]'>
     <Think />
-    <div className='w-[30%] mx-auto '>
+    <div className='w-[30%] mx-auto flex flex-col   '>
        {posts.map(/* p=>
             <div key={p.id.toString()}  className='border border-gray-500 shadow-slate-600 m-auto mt-5 w-[95%] h-[30%] overflow-clip'>
             <strong>{ users.find((el)=>el.id ===p.userId)?.name }</strong>

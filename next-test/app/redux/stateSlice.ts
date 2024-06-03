@@ -1,23 +1,26 @@
 
 import { createSlice, current, createAsyncThunk } from '@reduxjs/toolkit'
-import {url, User,Post} from '../constants/constants'
+import {url, User,Post, Photo} from '../constants/constants'
 
 
 
 interface initialState  {
   users:User[],
-  posts:Post[]
+  posts:Post[],
+  photos: Photo[]
 }
 
 const initialState:initialState = {
   users : [],
-  posts:[]
+  posts:[],
+  photos:[]
 }
 
 export type Social = {
   social:{
   users: User[],
-  posts : Post[]
+  posts : Post[],
+  photos: Photo[]
   }
 }
 
@@ -33,6 +36,14 @@ export const getUsers = createAsyncThunk("users", async()=> {
   
   
   const res = await fetch(url+'users');
+  const data = await res.json()
+  return data
+})
+
+export const getPhoto = createAsyncThunk("photo", async()=> {
+  
+  
+  const res = await fetch(url+'photos');
   const data = await res.json()
   return data
 })
@@ -68,6 +79,12 @@ export const socialSlice = createSlice({
       getUsers.fulfilled  , (state, action)=>{
       
         state.users = action.payload
+ 
+     }
+    ).addCase(
+      getPhoto.fulfilled  , (state, action)=>{
+      
+        state.photos = action.payload
  
      }
     )
