@@ -27,8 +27,9 @@ export type Social = {
 export const getPosts = createAsyncThunk("posts", async()=> {
   
   
-  const res = await fetch(url+'posts');
+  const res = await fetch(url+'posts', {next: {revalidate:1000}});
   const data = await res.json()
+  
   return data
 })
 

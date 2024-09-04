@@ -1,4 +1,5 @@
 'use client'
+import { Box, Button, Flex, Textarea } from '@chakra-ui/react'
 import React, { useState } from 'react'
 
 
@@ -11,8 +12,25 @@ export default function Think() {
   }
  */
   return (
-    <div className='h-[80%] w-[35%]  m-auto mt-4'>
-        <div className='bg-slate-500 h-[20%] flex justify-start items-start'>
+   
+    
+   <Flex margin={'2%'} mt={'6%'} width={'30%'} direction={'column'}  >
+    <Flex >
+       <Button flexGrow={1}>Aggiorna stato</Button>
+       <Button flexGrow={1}>Aggiungi foto/video</Button>
+
+    </Flex>
+    <Textarea placeholder={'A cosa stai pensando?'}></Textarea>
+    <Button className=' hover:bg-blue-700' bg={'blue.600'} color={'white'}>Posta</Button>
+      
+
+
+   </Flex>
+   
+  )
+}
+ {/* <div className='h-[80%] w-[35%]  m-auto mt-4 shadow-xl shadow-slate-700'>
+        <div className='bg-slate-300 h-[20%] flex justify-start items-start'>
              <div className='hover:bg-gray-700 inline m-2'>Aggiorna stato</div>
              <div className='hover:bg-gray-700 inline m-2'>Aggiungi foto/video</div>
 
@@ -20,12 +38,10 @@ export default function Think() {
         <textarea value={content} onChange={(e)=>setContent(e.target.value)} className='h-[60%] w-[100%] py-3'
            placeholder = ' A cosa stai pensando?'/>
         
-        <div className='bg-slate-500 h-[17%] flex justify-end items-center'>
-             <button /* onClick={createPost} */ className='bg-blue-700  m-2 p-1 rounded-md text-white hover:bg-blue-800'>Posta</button>
+        <div className='bg-slate-300 h-[17%] flex justify-end items-center'>
+             <button /* onClick={createPost} className='bg-blue-700  m-2 p-1 rounded-md text-white hover:bg-blue-800'>Posta</button>
 
         </div>
 
 
-    </div>
-  )
-}
+    </div> */}

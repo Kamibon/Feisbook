@@ -35,7 +35,7 @@ export default function Login() {
    
               
      </aside>
-     <div className='justify-center  h-[100%] w-[40%] flex flex-col  justify-items-center'>
+     <div className='justify-center  h-[100%] w-[40%] flex flex-col  items-center'>
      <form  className='h-[60%] w-[70%] my-20 p-7 bg-white rounded-md shadow shadow-slate-400'>
         <input  onChange={(e)=>changeCred(e, "email")} placeholder='Email o numero di telefono' className='border  focus:border-blue-600 shrink-0 rounded-md m-2 p-3 h-[10%] w-[60%]'/>
         <input  onChange={(e)=>changeCred(e, "password")}  type='password' placeholder='Password' className='border shrink-0 rounded-md m-2 p-3 h-[10%] w-[60%]'/>

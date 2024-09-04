@@ -2,10 +2,13 @@
 
 import Image from 'next/image'
 import React, {useEffect, useState} from 'react'
-import { useSelector } from 'react-redux'
-import { Social } from '../redux/stateSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { Social, getPosts, getUsers } from '../redux/stateSlice'
 import { User } from '../constants/constants'
 import Link from 'next/link'
+import { AppDispatch } from '../redux/store'
+import NavBar from './navBar'
+import { Box } from '@chakra-ui/react'
 
 
 
@@ -16,25 +19,28 @@ type myProps = {
 }
 
 
-export default function Searchbar({name}:myProps) {
+
+export default function Searchbar() {
     const [value, setValue] = useState('')
     const [searched, setSearched] = useState<User[]>([])
 
     const posts = useSelector((state:Social)=>state.social.posts)
     const users = useSelector((state:Social)=>state.social.users)
+    
+
 
     const search = (val:string)=>{
       if(val.length>0)
-      setSearched(users.filter((el)=>el.username.startsWith(val)||el.name.startsWith(val)))
+      setSearched(users?.filter((el)=>el.username.startsWith(val)||el.name.startsWith(val)))
     else setSearched([])
     }
 
 
 
   return (
-    <div className='w-[100%] '>
+    <Box className='w-[100%] h-[40%] '>
    
-        <nav className='bg-blue-800 flex h-20 justify-items-center align-middle items-center space-x-60'>
+        {/* <nav className='bg-blue-800 flex h-20 justify-items-center align-middle items-center space-x-60'>
         
          
            
@@ -47,13 +53,14 @@ export default function Searchbar({name}:myProps) {
 
             <div className='h-[55%] w-[30%] flex flex-col justify-center justify-items-center'>
              <div className=' hover:bg-blue-950 cursor-pointer m-4 text-center  h-full'>
-              <span className='text-white font-bold m-4  ' >{name}</span>
+              <span className='text-white font-bold m-4  ' >Me</span>
              
-             {/* <Image className='h-full w-[40%] mb-3 inline' alt = "" src ={require('./pages/photo/profile.jpg')}/> */}
+             { <Image className='h-full w-[40%] mb-3 inline' alt = "" src ={require('./pages/photo/profile.jpg')}/> }
              </div>
              </div>
              
-        </nav>
+        </nav> */}
+        <NavBar  name={'Giorgio Armani'}></NavBar>
          
         {searched?.map((el)=>
         <div key={el.id.toString()} className='flex flex-col border  bg-white justify-center ml-[40%] mb-1 z-10 w-[70%]'>
@@ -67,6 +74,6 @@ export default function Searchbar({name}:myProps) {
         
         }
           
-    </div>
+    </Box>
   )
 }
