@@ -1,54 +1,56 @@
-'use client'
+
 import PostComp from '@/app/components/post';
-import { Photo } from '@/app/constants/constants';
+import { Photo, Post, url, User } from '@/app/constants/constants';
 import { Social, getPhoto, getPosts, getUsers } from '@/app/redux/stateSlice';
 import { AppDispatch } from '@/app/redux/store';
 import { Avatar, Box, Button, Card, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Textarea } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { memo, useEffect, useMemo, useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react'
 
-export default function UserDetails({params}:{params:{id:number}}) {
+
+export default async function UserDetails({params}:{params:{id:number}}) {
   const id = params.id;
   
-const sections = ["Amici", "Diario", "Informazioni"]
 
+let users:User[] , posts:Post[], myPosts:Post[];
 
   
- const users = useSelector((state:Social)=>state.social.users) 
- const posts = useSelector((state:Social)=>state.social.posts) 
- let me ;
+ 
+ let me:User
 
- const photos = useSelector((state:Social)=>state.social.photos)
- let imageUrl:Photo|undefined
 
-function loadData(){
- /*  dispatch(getUsers())
-  dispatch(getPosts())
-  dispatch(getPhoto()) */
-  imageUrl = photos.find(el=>el.id === id)
-}
+ 
 
-   useEffect(()=>{
-    loadData()
-    me = users.find(el=>el.id.toString() === id.toString())
-    // if(!me) router.push('/')
 
-  }, [])
+ 
+  
+  const response = await fetch(url+"users/"+id)
+ me = await response.json()
+  const res1 = await fetch(url+"users");
+  users = await res1.json()
+  console.log(users)
+  const res2 = await fetch(url + "posts");
+  posts = await res2.json()
+  myPosts = posts.filter(el=>el.userId === id)
+  console.log(posts)
+
+
+   
+   
+   
+    
+  
    
  
   
   
-  const [page, setPage] = useState("Diario")
+  
 
    
-  if(photos){
-   imageUrl = photos.find(el=>el.id.toString() === id.toString())
-  }
-  else { imageUrl = undefined}
-  const myPosts = posts.filter(el=>el.userId.toString() === id.toString())
+
+  
   return (
     <div className='h-full w-full '>
        <div className='w-[100%] h-[27%] flex bg-blue-600 text-center'> <span className='m-auto'>Immagine di copertina di {me?.name}</span></div>
@@ -67,12 +69,13 @@ function loadData(){
       <section className='w-[100%] border h-[100%]  absolute left-0'>
         
           <div className='w-full h-full grid grid-cols-3 '>{
+            
           users.map(el=>
             <Card margin={4} key={el.id.toString()}>
               <Flex direction={'column'} justifyContent={'center'}>
 
               <Avatar name={el.name}></Avatar>
-              <Link className=' text-blue-600' href={'users/'+ el.id.toString()}>{el.name}</Link>
+              <Link className=' text-blue-600' href={el.id.toString()}>{el.name}</Link>
               <Button bg={'blue'} color={'white'}>Aggiungi agli amici</Button>
               </Flex>
 
@@ -102,7 +105,7 @@ function loadData(){
         
       
 
-           {myPosts.map(el=><PostComp key = {el.id.toString()} id={el.id} uid = {el.userId} name = {me?.name} title={el.title} body={el.body} />)} 
+           {posts.map(el=><PostComp key = {el.id.toString()} id={el.id} uid = {el.userId} name = {me?.name} title={el.title} body={el.body} />)} 
         
        </div>
     </TabPanel>

@@ -27,12 +27,12 @@ type Comment = {
 export default function PostComp( {id, uid, name, title, body}: myProps ) {
 
   const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(Math.floor(Math.random()*50))
+  
   const [comments, setComments] = useState<Comment[]>([]);
   const [showComments, setShowComments ] = useState(false)
   const url = usePathname()
-  console.log(url === '/')
-
+  
+ const likeString =liked ? 'text-blue-600': 'text-black'
  
  
 
@@ -47,10 +47,11 @@ export default function PostComp( {id, uid, name, title, body}: myProps ) {
  } */
 
   function liking(event : React.MouseEvent<HTMLButtonElement, MouseEvent>){
-    console.log(liked)
     
-    setLiked(prev=>{return !prev})
-    setTimeout(()=>console.log(liked), 3000)
+    console.log(event.currentTarget.classList)
+    setLiked(!liked)
+   
+    
   }
 
  
@@ -59,16 +60,16 @@ export default function PostComp( {id, uid, name, title, body}: myProps ) {
 
     <Card my = {2} className=' w-[40%] '>
       <Flex alignItems={'center'}><Avatar name={name}  ></Avatar>
-      <Link className='text-blue-700 basis-[10%] cursor-pointer '   href={ url==='/'? 'users/'+uid : url+ uid.toString()}>{name}</Link></Flex>
+      <Link className='text-blue-700 basis-[10%] cursor-pointer '   href={ url==='/'? 'users/'+uid :  uid.toString()}>{name}</Link></Flex>
       
        <Heading as={'h3'}>{title}</Heading>
        <Text>{body}</Text>
        <Divider/>
        <Box flexGrow={1}>
-         <Text><CheckIcon></CheckIcon>A {likes} persone piace questo elemento</Text>
+         <Text><CheckIcon></CheckIcon>A 10 persone piace questo elemento</Text>
          </Box>
        <Flex>
-         <Button className={'hover:text-blue-700' + liked? 'text-blue-700':'text-black'} onClick={(e)=>liking(e)} flexGrow={1} rightIcon={<CheckIcon></CheckIcon>}>Mi piace</Button>
+         <Button  className={`hover:text-blue-700 ${likeString}`} onClick={(e)=>liking(e)} flexGrow={1} rightIcon={<CheckIcon></CheckIcon>}>Mi piace</Button>
          <Button className='hover:text-blue-700' flexGrow={1} rightIcon={<EditIcon></EditIcon>}>Commenta</Button>
          
          

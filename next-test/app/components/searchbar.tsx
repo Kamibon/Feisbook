@@ -8,7 +8,7 @@ import { User } from '../constants/constants'
 import Link from 'next/link'
 import { AppDispatch } from '../redux/store'
 import NavBar from './navBar'
-import { Box } from '@chakra-ui/react'
+import { Avatar, Box, Flex } from '@chakra-ui/react'
 
 
 
@@ -60,15 +60,18 @@ export default function Searchbar() {
              </div>
              
         </nav> */}
-        <NavBar  name={'Giorgio Armani'}></NavBar>
+        <NavBar onChange={search}  name={'Giorgio Armani'}></NavBar>
          
         {searched?.map((el)=>
-        <div key={el.id.toString()} className='flex flex-col border  bg-white justify-center ml-[40%] mb-1 z-10 w-[70%]'>
-        <Link key={el.id.toString()} href={'users/'+el.id} className='w-[20%] h-[8%] border-gray-400  hover:bg-slate-500  '>
-        {el.username + ":"+ el.name} 
+        <Box key={el.id.toString()} className='flex flex-col border fixed top-[10%]  bg-white justify-center m-auto z-10 w-[70%]'>
+        <Flex justifyContent={'center'}>
+        <Link  key={el.id.toString()} href={'users/'+el.id} className='w-[20%] h-[8%] border-gray-400  hover:bg-slate-500  '>
+        {el.username } 
         {/* <Image key={el.surname} className='w-[30%] h-[50%]' alt = "" src ={require('./pages/photo/profile.jpg')}/> */}
+        <Avatar name={el.name}></Avatar>
         </Link>
-        </div>
+        </Flex>
+        </Box>
         )
        
         
